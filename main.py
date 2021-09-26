@@ -3,16 +3,25 @@ import pybind_11_example as pbe
 
 
 def fibonacci_py(x):
-    if x < 2:
+    if x < 0:
+        print('Sorry, fibonacci does not exist for negative numbers.')  # For C++, this is not necessary since data type
+        # is defined beforehand (e.g. unsigned) and an error is handled automatically for this case.
+
+        raise ValueError
+    elif x < 2:
         return x
-    return fibonacci_py(x - 1) + fibonacci_py(x - 2)
+    else:
+        return fibonacci_py(x - 1) + fibonacci_py(x - 2)
 
 
 def factorial_py(x):
-
-    if x == 0 or x == 1:
+    if x < 0:
+        print('Sorry, factorial does not exist for negative numbers.')
+        raise ValueError
+    elif x == 0 or x == 1:
         return 1
-    return x * factorial_py(x - 1)
+    else:
+        return x * factorial_py(x - 1)
 
 
 n = 20
@@ -32,7 +41,7 @@ last_time_cpp = time.perf_counter_ns()
 diff_time_cpp = last_time_cpp - start_time_cpp
 print('Time:', diff_time_cpp / 1e9, 's')
 
-print('Speed improvement of C++ over Python code for fibonnaci is ' + str(diff_time_py / diff_time_cpp))
+print('C++ code runs %0.3f faster than Python code for fibonacci recursion.' % (diff_time_py / diff_time_cpp))
 print()
 
 
@@ -51,4 +60,4 @@ last_time_cpp = time.perf_counter_ns()
 diff_time_cpp = last_time_cpp - start_time_cpp
 print('Time:', diff_time_cpp / 1e9, 's')
 
-print('Speed improvement of C++ code over Python code for factorial is ' + str(diff_time_py / diff_time_cpp))
+print('C++ code runs %0.3f faster than Python code for factorial recursion.' % (diff_time_py / diff_time_cpp))
