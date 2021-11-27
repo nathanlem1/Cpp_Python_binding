@@ -26,4 +26,3 @@ unsigned long long int factorial(const unsigned int n){
         return n * factorial (n - 1);
     }
 }
-
