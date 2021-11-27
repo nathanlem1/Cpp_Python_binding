@@ -1,18 +1,25 @@
 import time
-import pybind_11_example as pbe
+import pybind_11_recursion as pybr
 
 
 def fibonacci_py(x):
-    if x < 2:
+    if x < 0:
+        print('Error!, fibonacci does not exist for negative numbers.')
+        raise ValueError
+    elif x < 2:
         return x
-    return fibonacci_py(x - 1) + fibonacci_py(x - 2)
+    else:
+        return fibonacci_py(x - 1) + fibonacci_py(x - 2)
 
 
 def factorial_py(x):
-
-    if x == 0 or x == 1:
+    if x < 0:
+        print('Error!, factorial does not exist for negative numbers.')
+        raise ValueError
+    elif x == 0 or x == 1:
         return 1
-    return x * factorial_py(x - 1)
+    else:
+        return x * factorial_py(x - 1)
 
 
 n = 20
@@ -27,12 +34,12 @@ print('Time:', diff_time_py / 1e9, 's')
 
 print('C++:')
 start_time_cpp = time.perf_counter_ns()
-print('Answer:', pbe.fibonacci_cpp(n))  # C++ Python bound function is called here.
+print('Answer:', pybr.fibonacci_cpp(n))  # C++ Python bound function is called here.
 last_time_cpp = time.perf_counter_ns()
 diff_time_cpp = last_time_cpp - start_time_cpp
 print('Time:', diff_time_cpp / 1e9, 's')
 
-print('Speed improvement of C++ over Python code for fibonnaci is ' + str(diff_time_py / diff_time_cpp))
+print('C++ code runs %0.3f faster than Python code for fibonacci recursion.' % (diff_time_py / diff_time_cpp))
 print()
 
 
@@ -46,9 +53,9 @@ print('Time:', diff_time_py / 1e9, 's')
 
 print('C++:')
 start_time_cpp = time.perf_counter_ns()
-print('Answer:', pbe.factorial_cpp(n))  # C++ Python bound function is called here.
+print('Answer:', pybr.factorial_cpp(n))  # C++ Python bound function is called here.
 last_time_cpp = time.perf_counter_ns()
 diff_time_cpp = last_time_cpp - start_time_cpp
 print('Time:', diff_time_cpp / 1e9, 's')
 
-print('Speed improvement of C++ code over Python code for factorial is ' + str(diff_time_py / diff_time_cpp))
+print('C++ code runs %0.3f faster than Python code for factorial recursion.' % (diff_time_py / diff_time_cpp))
