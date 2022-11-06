@@ -1,11 +1,10 @@
 ### C++ Python bindings
-<<<<<<< HEAD
+
 We implement two recursive algorithms, fibonnaci and factorial, in C++ and make Python bindings using 
 [pybind11](https://github.com/pybind/pybind11), without even using CMake. We show here how we can use more than 
 one C++ functions when we make Python bindings. The C++ functions are much faster than the Python implementations. 
 We borrow some ideas from [here](https://www.blopig.com/blog/2021/03/c-python-bindings-in-5-minutes/).
 
-=======
 We implement two recursive algorithms, fibonnaci and factorial, in C++ and make Python bindings using [pybind11](https://github.com/pybind/pybind11), without even using CMake. We show here how we can use more than one C++ functions when we make Python bindings. The C++ functions are much faster than the Python implementations. We borrow some ideas from [here](https://www.blopig.com/blog/2021/03/c-python-bindings-in-5-minutes/).
 
 ### Dependencies
